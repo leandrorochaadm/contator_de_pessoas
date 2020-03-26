@@ -20,6 +20,14 @@ class _HomeState extends State<Home> {
   void _chagePeople(int delta){
     setState(() {
       _people += delta;
+
+      if(_people<0){
+        _infoText = "Mundo invertido";
+      } else if (_people <= 10){
+        _infoText = "Pode entrar";
+      } else {
+        _infoText = "Lotado";
+      }
     });
 
   }
