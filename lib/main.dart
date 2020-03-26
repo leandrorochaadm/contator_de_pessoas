@@ -13,6 +13,17 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  int _people = 0;
+  String _infoText = "Pode entrar!";
+
+  void _chagePeople(int delta){
+    setState(() {
+      _people += delta;
+    });
+
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -26,9 +37,9 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "Pessoa: 0",
+              "Pessoa: $_people",
               style:
-              TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -37,24 +48,28 @@ class _HomeState extends State<Home> {
                   padding: const EdgeInsets.all(10.0),
                   child: FlatButton(
                       child: Text(
-                        "+1",
+                        "-1",
                         style: TextStyle(fontSize: 40, color: Colors.white),
                       ),
-                      onPressed: () {}),
+                      onPressed: () {
+                        _chagePeople(-1);
+                      }),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: FlatButton(
                       child: Text(
-                        "-1",
+                        "+1",
                         style: TextStyle(fontSize: 40, color: Colors.white),
                       ),
-                      onPressed: () {}),
+                      onPressed: () {
+                        _chagePeople(1);
+                      }),
                 ),
               ],
             ),
             Text(
-              "Pode entrar",
+              _infoText,
               style: TextStyle(
                   color: Colors.white,
                   fontStyle: FontStyle.italic,
